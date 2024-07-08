@@ -27,7 +27,7 @@ const AuthCallback = () => {
 
           try {
             // Verificar si el usuario ya existe
-            const userDetailsResponse = await axios.post('http://167.172.244.10:8080/user/find-user', {
+            const userDetailsResponse = await axios.post('/api/user/find-user', {
               correo: decoded.email
             });
 
@@ -64,7 +64,7 @@ const AuthCallback = () => {
             // Si el usuario no existe, lo creamos
             if (error.response && error.response.status === 404) {
               try {
-                const addUserResponse = await axios.post('http://167.172.244.10:8080/user/add-user', {
+                const addUserResponse = await axios.post('/api/user/add-user', {
                   nombre: decoded.name,
                   correo: decoded.email,
                   token: token
@@ -75,7 +75,7 @@ const AuthCallback = () => {
                 // Esperar 2 segundos antes de intentar obtener los detalles del usuario nuevamente
                 setTimeout(async () => {
                   try {
-                    const userDetailsResponse = await axios.post('http://167.172.244.10:8080/user/find-user', {
+                    const userDetailsResponse = await axios.post('/api/user/find-user', {
                       correo: decoded.email
                     });
 

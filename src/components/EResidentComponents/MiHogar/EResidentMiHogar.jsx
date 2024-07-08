@@ -17,13 +17,13 @@ const EResidentMiHogar = () => {
       }
 
       try {
-        const response = await axios.post('http://167.172.244.10:8080/user/find-user', { correo: email });
+        const response = await axios.post('/api/user/find-user', { correo: email });
         if (response.data.hogares.length > 0) {
           const hogarDireccion = response.data.hogares[0].direccion;
           setDireccion(hogarDireccion);
 
           // Fetch residents for the home
-          const residentsResponse = await axios.get('http://167.172.244.10:8080/user/all-users');
+          const residentsResponse = await axios.get('/api/user/all-users');
           const filteredResidents = residentsResponse.data.filter(user =>
             user.hogares.some(hogar => hogar.direccion === hogarDireccion)
           );
@@ -45,7 +45,7 @@ const EResidentMiHogar = () => {
     setMensaje('');
 
     try {
-      await axios.post('http://167.172.244.10:8080/user/add-hogarXuser', {
+      await axios.post('/api/user/add-hogarXuser', {
         direccion: [direccion],
         correo: correo,
       });

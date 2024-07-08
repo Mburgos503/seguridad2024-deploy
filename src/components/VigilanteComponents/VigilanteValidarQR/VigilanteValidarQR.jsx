@@ -27,7 +27,7 @@ const VigilanteValidarQR = () => {
 
     const verifyUser = async (email) => {
         try {
-            const response = await axios.post('http://167.172.244.10:8080/user/find-user', { correo: email });
+            const response = await axios.post('/api/user/find-user', { correo: email });
             if (response.data && response.data.correo) {
                 setStatus('Aceptada');
             } else {

@@ -13,7 +13,7 @@ const AdminHomeTables = () => {
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
-        const response = await axios.get('http://167.172.244.10:8080/user/all-users');
+        const response = await axios.get('/api/user/all-users');
         // Filtrar usuarios que tienen hogar
         const usuariosConHogar = response.data.filter(usuario => usuario.hogares && usuario.hogares.length > 0);
         setUsuarios(usuariosConHogar);
@@ -25,7 +25,7 @@ const AdminHomeTables = () => {
 
     const fetchHogares = async () => {
       try {
-        const response = await axios.get('http://167.172.244.10:8080/Hogar/all-hogares');
+        const response = await axios.get('/api/Hogar/all-hogares');
         setHogares(response.data);
       } catch (error) {
         setError('Error al obtener los hogares');
@@ -35,7 +35,7 @@ const AdminHomeTables = () => {
 
     const fetchResidentesEncargados = async () => {
       try {
-        const response = await axios.post('http://167.172.244.10:8080/user/find-by-role', { role: 'RESIDENTE ENCARGADO' });
+        const response = await axios.post('/api/user/find-by-role', { role: 'RESIDENTE ENCARGADO' });
         setResidentesEncargados(response.data);
       } catch (error) {
         setError('Error al obtener los residentes encargados');

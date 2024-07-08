@@ -16,7 +16,7 @@ const AdminVigilanteTable = () => {
         // Obtener todos los hogares disponibles al montar el componente
         const fetchHogares = async () => {
             try {
-                const response = await axios.get('http://167.172.244.10:8080/Hogar/all-hogares');
+                const response = await axios.get('/api/Hogar/all-hogares');
                 setHogares(response.data);
             } catch (error) {
                 console.error('Error fetching hogares:', error);
@@ -30,9 +30,9 @@ const AdminVigilanteTable = () => {
         try {
             let response;
             if (role === 'ALL') {
-                response = await axios.get('http://167.172.244.10:8080/user/all-users');
+                response = await axios.get('/api/user/all-users');
             } else {
-                response = await axios.post('http://167.172.244.10:8080/user/find-by-role', { role });
+                response = await axios.post('/api/user/find-by-role', { role });
             }
             setUsers(response.data);
         } catch (error) {
@@ -49,7 +49,7 @@ const AdminVigilanteTable = () => {
     const executeAction = async () => {
         if (action === 'changeRole') {
             try {
-                await axios.post('http://167.172.244.10:8080/user/update-role', {
+                await axios.post('/api/user/update-role', {
                     correo: selectedUser.correo,
                     newRole: newRole,
                 });
@@ -60,7 +60,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'deleteUser') {
             try {
-                await axios.delete('http://167.172.244.10:8080/user/delete-user', {
+                await axios.delete('/api/user/delete-user', {
                     data: { correo: selectedUser.correo },
                 });
                 setMessage('Usuario eliminado exitosamente');
@@ -70,7 +70,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'addHogar') {
             try {
-                await axios.post('http://167.172.244.10:8080/user/add-hogarXuser', {
+                await axios.post('/api/user/add-hogarXuser', {
                     direccion: [hogar],
                     correo: selectedUser.correo,
                 });
