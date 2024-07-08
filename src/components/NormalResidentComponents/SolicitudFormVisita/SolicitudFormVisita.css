@@ -1,0 +1,177 @@
+.form-container{
+    margin-top: 100px;
+    margin-bottom: 60px;
+    width: 100%;
+    background: #F6F8FF;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    
+
+  
+}
+
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.text {
+    color: #4C567C;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+.underline {
+    width: 61px;
+    height: 6px;
+    background: #4C567C;
+    border-radius: 9px;
+}
+
+.inputs {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 60px;
+    background: lightgray;
+    border-radius: 6px;
+}
+
+
+.input img {
+    margin: 0px 30px;
+}
+
+.input input {
+    height: 30px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 16px;
+}
+
+.forgot-password {
+    margin-top: 16px;
+    color: #797979;
+    font-size: 16px;
+
+}
+
+.forgot-password span {
+    cursor: pointer;
+    color: #1C294B;
+}
+/* 26396A
+1C294B */
+
+.submit-container {
+    display: flex;
+    margin: 10px auto;
+}
+
+
+.log-in-btn {
+    border: 2px solid currentColor;
+    border-radius: 3rem;
+    background-color: #4C567C;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 1rem 4rem;
+    position: relative;
+    text-decoration: none;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+  }
+
+
+
+
+  .log-in-btn:hover {
+    border: 2px solid transparent;
+    background-color: #444E73;
+    color: white;
+    transform: scale(1.05);
+    will-change: transform;
+  }
+
+
+@media screen and (max-width: 600px) {
+    .input {
+        display: flex;
+        align-items: center;
+        margin: auto;
+        width: 60vw;
+        height: 60px;
+        background: lightgray;
+        border-radius: 6px;
+    }
+    
+}
+
+.error-message {
+    color: #EA7C6E;
+}
+
+form p {
+    margin-bottom: 0;
+    padding-left: 47px;
+}
+
+.popup, .error-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #00B389;
+  color: white;
+  margin-top: 0;
+  padding: 15px;
+  padding-top: 0;
+  border-radius: 30px;
+  z-index: 1000;
+  opacity: 0;
+  animation: slideIn 0.5s forwards, slideOut 0.5s forwards 2.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar el contenido verticalmente */
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación para hacer que el popup desaparezca */
+@keyframes slideOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}

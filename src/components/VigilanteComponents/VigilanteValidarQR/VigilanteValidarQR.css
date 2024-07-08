@@ -1,0 +1,93 @@
+.qr-container {
+
+    background-color: #F6F8FF;
+    text-align: center;
+    padding: 32px;
+    border-radius: 20px;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+  
+  }
+  .title-qr {
+    font-size: 36px;
+    margin-top: 16px;
+    color: #4C567C; /* Color de texto mejorado */
+  }
+  
+  .qr-button-generator {
+    border: 2px solid currentColor;
+      border-radius: 3rem;
+      background-color: #4C567C;
+      color: white;
+      font-size: 16px;
+      overflow: hidden;
+      padding: 1rem 4rem;
+      position: relative;
+      text-decoration: none;
+      transition: 0.2s transform ease-in-out;
+      will-change: transform;
+      z-index: 0;
+  }
+  
+  .qr-button-generator:hover {
+    border: 2px solid transparent;
+    background-color: #444E73;
+    color: white;
+    transform: scale(1.05);
+    will-change: transform;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  .estado-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    gap: 6px;
+  }
+  
+  .active-qr {
+    font-weight: bold;
+    color: #00B389; /* Cambia el color según tu diseño */
+  }
+  
+  .state-qr {
+    color: #1C294B;
+  }
+  
+  .qrinfo { 
+    color: #434655;
+  }
+
+  .qr-reader-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.qr-reader-container {
+    width: 600px; /* Ajusta el tamaño según sea necesario */
+    height: 600px; /* Ajusta el tamaño según sea necesario */
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+@media (max-width: 1110px) {
+    
+    .qr-reader-container {
+        width: 300px; /* Ajusta el tamaño según sea necesario */
+        height: 300px; /* Ajusta el tamaño según sea necesario */
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}

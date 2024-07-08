@@ -1,0 +1,225 @@
+.admin-user-management {
+    padding: 20px;
+    max-width: 2000px;
+    margin: auto;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container select {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.accept-button {
+    background: #00B389;
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+}
+
+.accept-button:hover {
+    background-color: #009b77;
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+.peticion-table-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow-x: auto;
+    /* Para permitir el desplazamiento horizontal en pantallas pequeñas */
+}
+
+.peticion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.peticion-table th,
+.peticion-table td {
+    padding: 10px;
+    text-align: center;
+    /* Ajustar alineación */
+    border-bottom: 1px solid #ddd;
+}
+
+.peticion-table th {
+    background-color: #565F86;
+    color: white;
+}
+
+.peticion-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.peticion-table td {
+    padding: 12px 15px;
+    color: #333;
+    /* Texto oscuro para mayor contraste */
+}
+
+.peticion-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Fondo gris claro para filas pares */
+}
+
+.peticion-table td {
+    background-color: #ffffff;
+    /* Fondo blanco para celdas */
+}
+
+/* Media Queries para Responsividad */
+
+@media (max-width: 900px) {
+
+    .peticion-table th,
+    .peticion-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .peticion-table-container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .peticion-table th,
+    .peticion-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .peticion-table th {
+        font-size: 14px;
+    }
+}
+
+.popup-action {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-action h3 {
+    margin-top: 0;
+    color: black;
+    text-align: center;
+}
+
+.popup-action p {
+    margin-top: 12px;
+    color: black;
+    text-align: center;
+}
+
+.action-button {
+    background: #565F86;
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+}
+
+.action-button:hover {
+    background-color: lightslategray;
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+.accept-button {
+    background: #00B389;
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+}
+
+.accept-button:hover {
+    background-color: #009b77;
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+.cancel-button {
+    background: #868686;
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+}
+
+.cancel-button:hover {
+    background-color: #7d7d7d;
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+.action-buttons {
+    display: inline-flex;
+    gap: 9px;
+}
+

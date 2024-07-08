@@ -1,0 +1,22 @@
+.user-landing-page {
+    background-color: #F6F8FF;
+    padding: 64px;
+    border-radius: 20px;
+    max-width: 900px;
+    margin: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 64px;
+  }
+  
+  .user-landing-page h1 {
+    font-size: 36px;
+    color: #4C567C;
+    margin-bottom: 20px;
+  }
+  
+  .user-landing-page p {
+    font-size: 18px;
+    color: #434655;
+    margin-bottom: 10px;
+  }

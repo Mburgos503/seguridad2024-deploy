@@ -1,0 +1,60 @@
+/* AddHogarForm.css */
+
+.add-hogar-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 32px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .add-hogar-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-hogar-form-group {
+    margin-bottom: 32px;
+  }
+  
+  .add-hogar-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .add-hogar-form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+  
+  .add-hogar-form button {
+    margin-top: 64px;
+    margin-bottom:32px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #565F86;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-hogar-form button:hover {
+    background-color: #444E73;
+  }
+  
+  .add-hogar-form-container p {
+    text-align: center;
+    margin-top: 20px;
+    color: green;
+  }

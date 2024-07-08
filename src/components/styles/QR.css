@@ -1,0 +1,156 @@
+.qr-container {
+  background-color: #F6F8FF;
+  text-align: center;
+  padding: 32px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-top: 90px;
+}
+
+.title-qr {
+  font-size: 36px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  color: #4C567C; /* Color de texto mejorado */
+}
+
+.qr-button-generator {
+  border: 2px solid currentColor;
+  border-radius: 3rem;
+  background-color: #4C567C;
+  color: white;
+  font-size: 16px;
+  overflow: hidden;
+  padding: 1rem 4rem;
+  position: relative;
+  text-decoration: none;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+}
+
+.qr-button-generator:hover {
+  border: 2px solid transparent;
+  background-color: #444E73;
+  color: white;
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+.qr-code {
+  margin: 20px 0;
+}
+
+.qr-code svg {
+  width: 500px;
+  height: 500px;
+}
+
+.estado-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 6px;
+  justify-content: center;
+  text-align: center;
+}
+
+.active-qr {
+  font-weight: bold;
+  color: #00B389; /* Cambia el color según tu diseño */
+}
+
+.state-qr {
+  color: #1C294B;
+}
+
+.qrinfo { 
+  color: #434655;
+}
+
+/* Estilo del popup */
+.popup, .error-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #00B389;
+  margin-top: 0;
+  padding: 15px;
+  color: white;
+  padding-top: 0;
+  border-radius: 25px;
+  z-index: 1000;
+  opacity: 0;
+  animation: slideIn 0.5s forwards, slideOut 0.5s forwards 2.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar el contenido verticalmente */
+}
+
+.error-popup {
+  background-color: #E74C3C;
+}
+
+/* Animación para hacer que el popup aparezca */
+@keyframes slideIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Animación para hacer que el popup desaparezca */
+@keyframes slideOut {
+  to {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+}
+
+/* Media Queries para Responsividad */
+
+/* Tablets y dispositivos más pequeños */
+@media (max-width: 900px) {
+  .qr-container {
+      padding: 20px;
+      margin-top: 40px;
+  }
+
+  .title-qr {
+      font-size: 28px;
+  }
+
+  .qr-code svg {
+      width: 400px;
+      height: 400px;
+  }
+
+  .qr-button-generator {
+      font-size: 18px;
+      padding: 0.8rem 3rem;
+  }
+}
+
+/* Móviles y dispositivos más pequeños */
+@media (max-width: 600px) {
+  .qr-container {
+      padding: 15px;
+      margin-top: 40px;
+  }
+
+  .title-qr {
+      font-size: 24px;
+  }
+
+  .qr-code svg {
+      width: 300px;
+      height: 300px;
+  }
+
+  .qr-button-generator {
+      font-size: 12px;
+      padding: 0.6rem 2rem;
+  }
+}
