@@ -1,18 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './EResidentMiHogar.css'; // Asegúrate de crear este archivo CSS para estilos
+import './EResidentMiHogar.css'; 
 
 const EResidentMiHogar = () => {
   const [direccion, setDireccion] = useState('');
   const [correo, setCorreo] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [residents, setResidents] = useState([]);
+
+  useEffect(() => {
+    const fetchHogar = async () => {
+      const email = localStorage.getItem('correo');
+      if (!email) {
+        setMensaje('Correo no encontrado en localStorage');
+        return;
+      }
+
+      try {
+        const response = await axios.post('https://proyectoncapas.studio:8080/user/find-user', { correo: email });
+        if (response.data.hogares.length > 0) {
+          const hogarDireccion = response.data.hogares[0].direccion;
+          setDireccion(hogarDireccion);
+
+          // Fetch residents for the home
+          const residentsResponse = await axios.get('https://proyectoncapas.studio:8080/user/all-users');
+          const filteredResidents = residentsResponse.data.filter(user =>
+            user.hogares.some(hogar => hogar.direccion === hogarDireccion)
+          );
+          setResidents(filteredResidents);
+        } else {
+          setMensaje('No se encontraron hogares para este usuario');
+        }
+      } catch (error) {
+        setMensaje('Error al obtener la dirección del hogar');
+        console.error(error);
+      }
+    };
+
+    fetchHogar();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMensaje('');
 
     try {
-      const response = await axios.post('http://167.172.244.10:8080/user/add-hogarXuser', {
+      await axios.post('https://proyectoncapas.studio:8080/user/add-hogarXuser', {
         direccion: [direccion],
         correo: correo,
       });
@@ -34,6 +67,7 @@ const EResidentMiHogar = () => {
             id="direccion"
             value={direccion}
             onChange={(e) => setDireccion(e.target.value)}
+            readOnly
             required
           />
         </div>
@@ -47,9 +81,35 @@ const EResidentMiHogar = () => {
             required
           />
         </div>
-        <button type="submit">Agregar</button>
+        <div className='accept-form'>
+          <button className='accept-button' type="submit">Agregar</button>
+        </div>
       </form>
       {mensaje && <p>{mensaje}</p>}
+
+      {residents.length > 0 && (
+        <div className="peticion-table-container">
+          <h2 >Residentes en {direccion}</h2>
+          <table className="peticion-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              {residents.map(resident => (
+                <tr key={resident.id}>
+                  <td>{resident.nombre}</td>
+                  <td>{resident.correo}</td>
+                  <td>{resident.role.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

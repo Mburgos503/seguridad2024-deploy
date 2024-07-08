@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { QrReader } from 'react-qr-reader';
+import axios from 'axios';
 import './VigilanteValidarQR.css'
 
 const VigilanteValidarQR = () => {
     const [data, setData] = useState(localStorage.getItem('qrData') || 'No result');
     const [scanning, setScanning] = useState(false);
+    const [status, setStatus] = useState('Pendiente');
 
     const startScanning = () => {
         setScanning(true);
         setData('No result');
+        setStatus('Pendiente');
     };
 
     const stopScanning = () => {
         setScanning(false);
-        window.location.reload();
     };
 
     useEffect(() => {
         if (data !== 'No result') {
             localStorage.setItem('qrData', data);
+            verifyUser(data);
         }
     }, [data]);
+
+    const verifyUser = async (email) => {
+        try {
+            const response = await axios.post('https://proyectoncapas.studio:8080/user/find-user', { correo: email });
+            if (response.data && response.data.correo) {
+                setStatus('Aceptada');
+            } else {
+                setStatus('Rechazada');
+            }
+        } catch (error) {
+            console.error('Error verifying user:', error);
+            setStatus('Rechazada');
+        }
+    };
 
     return (
         <div className="qr-container">
@@ -55,11 +72,10 @@ const VigilanteValidarQR = () => {
             </div>
             <div className="estado-container">
                 <span className='state-qr'><strong>Estado entrada: </strong> </span>
-                <span className="active-qr"> Aceptada</span>
+                <span className='status'> {status}</span>
             </div>
         </div>
     );
 };
 
 export default VigilanteValidarQR;
-

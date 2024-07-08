@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://167.172.244.10:8080';
+const baseURL = 'https://proyectoncapas.studio:8080';
 
 const apiClient = axios.create({
   baseURL: baseURL, 

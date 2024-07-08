@@ -91,3 +91,7 @@
         overflow: hidden;
     }
 }
+
+.status {
+  color: black;
+}

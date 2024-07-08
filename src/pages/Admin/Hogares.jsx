@@ -8,7 +8,7 @@ const Hogares = () => {
             <AdminHeader />
             <div className='container'>
                 <div className="text-table-header">
-                    <h1>Hogares y sus residentes</h1>
+                    <h1>Buscar usuarios por hogar</h1>
                 </div>
                 <AdminHomeTables />
             </div>

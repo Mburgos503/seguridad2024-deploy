@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './AdminVigilanteTable.css'; // Asegúrate de crear este archivo CSS para estilos
+import './AdminVigilanteTable.css';
 
 const AdminVigilanteTable = () => {
     const [role, setRole] = useState('');
@@ -10,14 +10,29 @@ const AdminVigilanteTable = () => {
     const [message, setMessage] = useState('');
     const [newRole, setNewRole] = useState('');
     const [hogar, setHogar] = useState('');
+    const [hogares, setHogares] = useState([]);
+
+    useEffect(() => {
+        // Obtener todos los hogares disponibles al montar el componente
+        const fetchHogares = async () => {
+            try {
+                const response = await axios.get('https://proyectoncapas.studio:8080/Hogar/all-hogares');
+                setHogares(response.data);
+            } catch (error) {
+                console.error('Error fetching hogares:', error);
+            }
+        };
+
+        fetchHogares();
+    }, []);
 
     const handleSearch = async () => {
         try {
             let response;
             if (role === 'ALL') {
-                response = await axios.get('http://167.172.244.10:8080/user/all-users');
+                response = await axios.get('https://proyectoncapas.studio:8080/user/all-users');
             } else {
-                response = await axios.post('http://167.172.244.10:8080/user/find-by-role', { role });
+                response = await axios.post('https://proyectoncapas.studio:8080/user/find-by-role', { role });
             }
             setUsers(response.data);
         } catch (error) {
@@ -34,7 +49,7 @@ const AdminVigilanteTable = () => {
     const executeAction = async () => {
         if (action === 'changeRole') {
             try {
-                await axios.post('http://167.172.244.10:8080/user/update-role', {
+                await axios.post('https://proyectoncapas.studio:8080/user/update-role', {
                     correo: selectedUser.correo,
                     newRole: newRole,
                 });
@@ -45,7 +60,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'deleteUser') {
             try {
-                await axios.delete('http://167.172.244.10:8080/user/delete-user', {
+                await axios.delete('https://proyectoncapas.studio:8080/user/delete-user', {
                     data: { correo: selectedUser.correo },
                 });
                 setMessage('Usuario eliminado exitosamente');
@@ -55,7 +70,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'addHogar') {
             try {
-                await axios.post('http://167.172.244.10:8080/user/add-hogarXuser', {
+                await axios.post('https://proyectoncapas.studio:8080/user/add-hogarXuser', {
                     direccion: [hogar],
                     correo: selectedUser.correo,
                 });
@@ -165,12 +180,18 @@ const AdminVigilanteTable = () => {
                     {action === 'addHogar' && (
                         <>
                             <label htmlFor="hogar">Dirección del Hogar:</label>
-                            <input
-                                type="text"
+                            <select
                                 id="hogar"
                                 value={hogar}
                                 onChange={(e) => setHogar(e.target.value)}
-                            />
+                            >
+                                <option value="">Seleccione un hogar</option>
+                                {hogares.map((h) => (
+                                    <option key={h.id} value={h.direccion}>
+                                        {h.direccion}
+                                    </option>
+                                ))}
+                            </select>
                             <button className="accept-button" onClick={executeAction}>Aceptar</button>
                         </>
                     )}

@@ -37,20 +37,20 @@
   
   .add-hogar-form button {
     margin-top: 64px;
-    margin-bottom:32px;
+    margin-bottom:64px;
     display: block;
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 4px;
-    background-color: #565F86;
+    border-radius: 20px;
+    background-color: #00B389;
     color: white;
     font-size: 16px;
     cursor: pointer;
   }
   
   .add-hogar-form button:hover {
-    background-color: #444E73;
+    background-color: #009b77;
   }
   
   .add-hogar-form-container p {

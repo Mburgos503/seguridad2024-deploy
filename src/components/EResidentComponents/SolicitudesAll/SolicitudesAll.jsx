@@ -10,7 +10,7 @@ const SolicitudesAll = () => {
     useEffect(() => {
         const fetchPeticiones = async () => {
             try {
-                const response = await axios.get('http://167.172.244.10:8080/peticiones/all-peticiones');
+                const response = await axios.get('https://proyectoncapas.studio:8080/peticiones/all-peticiones');
                 setPeticiones(response.data);
             } catch (error) {
                 console.error('Error fetching peticiones:', error);
@@ -32,7 +32,7 @@ const SolicitudesAll = () => {
 
     const handleAccept = async () => {
         try {
-            await axios.put('http://167.172.244.10:8080/peticiones/update-status', {
+            await axios.put('https://proyectoncapas.studio:8080/peticiones/update-status', {
                 code: selectedPeticion.id,
                 estado: 'ACEPTADA',
             });
@@ -49,7 +49,7 @@ const SolicitudesAll = () => {
 
     const handleReject = async () => {
         try {
-            await axios.put('http://167.172.244.10:8080/peticiones/update-status', {
+            await axios.put('https://proyectoncapas.studio:8080/peticiones/update-status', {
                 code: selectedPeticion.id,
                 estado: 'RECHAZADA',
             });
@@ -62,6 +62,16 @@ const SolicitudesAll = () => {
         } catch (error) {
             console.error('Error updating status:', error);
         }
+    };
+
+    const formatFecha = (fecha) => {
+        const date = new Date(fecha);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
     };
 
     return (
@@ -82,12 +92,10 @@ const SolicitudesAll = () => {
                         {peticiones.map((peticion) => (
                             <tr key={peticion.id}>
                                 <td>{peticion.nombre_visitante}</td>
-                                <td>{peticion.fecha_entrada}</td>
-                                <td>{peticion.fecha_salida}</td>
+                                <td>{formatFecha(peticion.fecha_entrada)}</td>
+                                <td>{formatFecha(peticion.fecha_salida)}</td>
                                 <td>{peticion.user.nombre}</td>
-
                                 <td>{peticion.estado}</td>
-
                                 <td>
                                     <button className='action-button' onClick={() => handleActionClick(peticion)}>Acción</button>
                                 </td>
@@ -99,18 +107,15 @@ const SolicitudesAll = () => {
                     <div className="popup-action">
                         <h3>Acción para la petición</h3>
                         <p>¿Deseas aceptar o rechazar esta petición?</p>
-                        <br></br>
                         <div className="action-buttons">
                             <button className='accept-button' onClick={handleAccept}>Aceptar</button>
                             <button className='log-out-button' onClick={handleReject}>Rechazar</button>
                             <button className='cancel-button' onClick={handleClosePopup}>Cerrar</button>
                         </div>
-
                     </div>
                 )}
             </div>
         </div>
-
     );
 };
 
