@@ -9,7 +9,7 @@ const AdminHomeTables = () => {
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
-        const response = await axios.get('http://167.172.244.10/user/all-users');
+        const response = await axios.get('http://167.172.244.10:8080/user/all-users');
         // Filtrar usuarios que tienen hogar
         const filteredUsuarios = response.data.filter(usuario => usuario.hogares && usuario.hogares.length > 0);
         setUsuarios(filteredUsuarios);

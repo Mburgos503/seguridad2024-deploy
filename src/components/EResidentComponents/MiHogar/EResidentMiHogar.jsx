@@ -12,7 +12,7 @@ const EResidentMiHogar = () => {
     setMensaje('');
 
     try {
-      const response = await axios.post('http://167.172.244.10/user/add-hogarXuser', {
+      const response = await axios.post('http://167.172.244.10:8080/user/add-hogarXuser', {
         direccion: [direccion],
         correo: correo,
       });

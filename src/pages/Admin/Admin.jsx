@@ -16,7 +16,7 @@ const Admin = () => {
       }
 
       try {
-        const response = await axios.post('http://167.172.244.10/user/find-user', { correo: email });
+        const response = await axios.post('http://167.172.244.10:8080/user/find-user', { correo: email });
         setUserData(response.data);
       } catch (error) {
         setError('Error al obtener la información del usuario');
