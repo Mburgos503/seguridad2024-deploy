@@ -9,7 +9,7 @@ const AdminTableEntradas = () => {
     useEffect(() => {
         const fetchPeticiones = async () => {
             try {
-                const response = await axios.get('https://proyectoncapas.studio:8080/peticiones/all-peticiones');
+                const response = await axios.get('http://167.172.244.10:8080/peticiones/all-peticiones');
                 // Filtrar peticiones donde dui_visitante no es nulo
                 const filteredPeticiones = response.data.filter(peticion => peticion.dui_visitante !== null);
                 setPeticiones(filteredPeticiones);

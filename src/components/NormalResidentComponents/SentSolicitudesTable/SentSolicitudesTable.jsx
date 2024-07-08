@@ -15,7 +15,7 @@ const SentSolicitudesTable = () => {
             }
 
             try {
-                const response = await axios.post('https://proyectoncapas.studio:8080/peticiones/find-peticion-user', { correo }, {
+                const response = await axios.post('http://167.172.244.10:8080/peticiones/find-peticion-user', { correo }, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

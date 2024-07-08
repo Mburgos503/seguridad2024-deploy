@@ -10,7 +10,7 @@ const SolicitudesAll = () => {
     useEffect(() => {
         const fetchPeticiones = async () => {
             try {
-                const response = await axios.get('https://proyectoncapas.studio:8080/peticiones/all-peticiones');
+                const response = await axios.get('http://167.172.244.10:8080/peticiones/all-peticiones');
                 setPeticiones(response.data);
             } catch (error) {
                 console.error('Error fetching peticiones:', error);
@@ -32,7 +32,7 @@ const SolicitudesAll = () => {
 
     const handleAccept = async () => {
         try {
-            await axios.put('https://proyectoncapas.studio:8080/peticiones/update-status', {
+            await axios.put('http://167.172.244.10:8080/peticiones/update-status', {
                 code: selectedPeticion.id,
                 estado: 'ACEPTADA',
             });
@@ -49,7 +49,7 @@ const SolicitudesAll = () => {
 
     const handleReject = async () => {
         try {
-            await axios.put('https://proyectoncapas.studio:8080/peticiones/update-status', {
+            await axios.put('http://167.172.244.10:8080/peticiones/update-status', {
                 code: selectedPeticion.id,
                 estado: 'RECHAZADA',
             });
