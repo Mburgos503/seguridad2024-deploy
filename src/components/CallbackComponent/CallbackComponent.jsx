@@ -4,6 +4,9 @@ import { jwtDecode } from 'jwt-decode';
 import './CallbackComponent.css';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const AuthCallback = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
@@ -27,7 +30,7 @@ const AuthCallback = () => {
 
           try {
             // Verificar si el usuario ya existe
-            const userDetailsResponse = await axios.post('http://localhost:8080/user/find-user', {
+            const userDetailsResponse = await axios.post(`${API_URL}/user/find-user`, {
               correo: decoded.email
             });
 
@@ -64,7 +67,7 @@ const AuthCallback = () => {
             // Si el usuario no existe, lo creamos
             if (error.response && error.response.status === 404) {
               try {
-                const addUserResponse = await axios.post('http://localhost:8080/user/add-user', {
+                const addUserResponse = await axios.post(`${API_URL}/user/add-user`, {
                   nombre: decoded.name,
                   correo: decoded.email,
                   token: token
@@ -75,7 +78,7 @@ const AuthCallback = () => {
                 // Esperar 2 segundos antes de intentar obtener los detalles del usuario nuevamente
                 setTimeout(async () => {
                   try {
-                    const userDetailsResponse = await axios.post('http://localhost:8080/user/find-user', {
+                    const userDetailsResponse = await axios.post(`${API_URL}/user/find-user`, {
                       correo: decoded.email
                     });
 

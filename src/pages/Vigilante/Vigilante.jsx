@@ -3,6 +3,9 @@ import VigilanteHeader from '../../components/VigilanteComponents/VigilanteHeade
 import axios from 'axios';
 import "../LandingStyles.css"
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const Vigilante = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
@@ -16,7 +19,7 @@ const Vigilante = () => {
       }
 
       try {
-        const response = await axios.post('http://localhost:8080/user/find-user', { correo: email });
+        const response = await axios.post(`${API_URL}/user/find-user`, { correo: email });
         setUserData(response.data);
       } catch (error) {
         setError('Error al obtener la información del usuario');

@@ -3,6 +3,9 @@ import { QrReader } from 'react-qr-reader';
 import axios from 'axios';
 import './VigilanteValidarQR.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const VigilanteValidarQR = () => {
     const [data, setData] = useState(localStorage.getItem('qrData') || 'No result');
     const [scanning, setScanning] = useState(false);
@@ -25,10 +28,25 @@ const VigilanteValidarQR = () => {
         }
     }, [data]);
 
-    http://localhost:8080user/find-user
+    const verifyUser = async (email) => {
+        try {
+            const response = await axios.post(`${API_URL}user/find-user`, { correo: email });
+            if (response.data && response.data.correo) {
+                setStatus('Aceptada');
+                handleAcepptQR();
+            } else {
+                setStatus('Rechazada');
+            }
+        } catch (error) {
+            console.error('Error verifying user:', error);
+            setStatus('Rechazada');
+        } finally {
+            stopScanning();
+        }
+    };
 
     const handleAcepptQR = () => {
-        axios.post('http://localhost:8080/qr-data', { qrData: data })
+        axios.post(`${API_URL}/qr-data`, { qrData: data })
             .then(response => {
                 console.log('State activated, response from backend:', response.data);
             })

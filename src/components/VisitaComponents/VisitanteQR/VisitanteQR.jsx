@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const VisitanteQR = () => {
     const [apiKey, setApiKey] = useState('');
     const [success, setSuccess] = useState(false);
@@ -44,7 +47,7 @@ const VisitanteQR = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/codigoqr/add-codeqr', data, {
+            const response = await axios.post(`${API_URL}/codigoqr/add-codeqr`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

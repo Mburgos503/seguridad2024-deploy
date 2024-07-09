@@ -3,6 +3,10 @@ import QRCode from 'react-qr-code';
 import axios from 'axios';
 import '../../styles/QR.css';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const NResidentQR = () => {
     const [apiKey, setApiKey] = useState('');
     const [success, setSuccess] = useState(false);
@@ -45,7 +49,7 @@ const NResidentQR = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/codigoqr/add-codeqr', data, {
+            const response = await axios.post(`${API_URL}/codigoqr/add-codeqr`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

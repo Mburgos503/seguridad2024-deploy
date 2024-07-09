@@ -6,6 +6,10 @@ import user_icon from '../../../assets/person.png';
 import date_icon from '../../../assets/date2.png';
 import clock_icon from '../../../assets/clock.png';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const SolicitudFormVisita = () => {
     const [nombreVisitante, setNombreVisitante] = useState('');
     const [fechaEntrada, setFechaEntrada] = useState('');
@@ -48,7 +52,7 @@ const SolicitudFormVisita = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/peticiones/add-peticion', peticion, {
+            const response = await axios.post(`${API_URL}/peticiones/add-peticion`, peticion, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

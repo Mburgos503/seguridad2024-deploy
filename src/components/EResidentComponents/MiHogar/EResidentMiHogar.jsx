@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './EResidentMiHogar.css'; 
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const EResidentMiHogar = () => {
   const [direccion, setDireccion] = useState('');
   const [correo, setCorreo] = useState('');
@@ -17,13 +21,13 @@ const EResidentMiHogar = () => {
       }
 
       try {
-        const response = await axios.post('http://localhost:8080/user/find-user', { correo: email });
+        const response = await axios.post(`${API_URL}/user/find-user`, { correo: email });
         if (response.data.hogares.length > 0) {
           const hogarDireccion = response.data.hogares[0].direccion;
           setDireccion(hogarDireccion);
 
           // Fetch residents for the home
-          const residentsResponse = await axios.get('http://localhost:8080/user/all-users');
+          const residentsResponse = await axios.get(`${API_URL}/user/all-users`);
           const filteredResidents = residentsResponse.data.filter(user =>
             user.hogares.some(hogar => hogar.direccion === hogarDireccion)
           );
@@ -45,7 +49,7 @@ const EResidentMiHogar = () => {
     setMensaje('');
 
     try {
-      await axios.post('http://localhost:8080/user/add-hogarXuser', {
+      await axios.post(`${API_URL}/user/add-hogarXuser`, {
         direccion: [direccion],
         correo: correo,
       });

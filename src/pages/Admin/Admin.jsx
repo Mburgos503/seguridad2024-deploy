@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import AdminHeader from "../../components/AdminComponents/AdminHeader/AdminHeader";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Admin = () => {
   const [userData, setUserData] = useState(null);
@@ -16,7 +18,7 @@ const Admin = () => {
       }
 
       try {
-        const response = await axios.post('http://localhost:8080/user/find-user', { correo: email });
+        const response = await axios.post(`${API_URL}/user/find-user`, { correo: email });
         setUserData(response.data);
       } catch (error) {
         setError('Error al obtener la información del usuario');

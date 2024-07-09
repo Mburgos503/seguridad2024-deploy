@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../styles/Tables.css';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const SentSolicitudesTable = () => {
     const [peticiones, setPeticiones] = useState([]);
     const [error, setError] = useState('');
@@ -15,7 +18,7 @@ const SentSolicitudesTable = () => {
             }
 
             try {
-                const response = await axios.post('http://localhost:8080/peticiones/find-peticion-user', { correo }, {
+                const response = await axios.post(`${API_URL}/peticiones/find-peticion-user`, { correo }, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../styles/Tables.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const SolicitudesAll = () => {
     const [peticiones, setPeticiones] = useState([]);
     const [selectedPeticion, setSelectedPeticion] = useState(null);
@@ -10,7 +13,7 @@ const SolicitudesAll = () => {
     useEffect(() => {
         const fetchPeticiones = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/peticiones/all-peticiones');
+                const response = await axios.get(`${API_URL}/peticiones/all-peticiones`);
                 setPeticiones(response.data);
             } catch (error) {
                 console.error('Error fetching peticiones:', error);
@@ -32,7 +35,7 @@ const SolicitudesAll = () => {
 
     const handleAccept = async () => {
         try {
-            await axios.put('http://localhost:8080/peticiones/update-status', {
+            await axios.put(`${API_URL}/peticiones/update-status`, {
                 code: selectedPeticion.id,
                 estado: 'ACEPTADA',
             });
@@ -49,7 +52,7 @@ const SolicitudesAll = () => {
 
     const handleReject = async () => {
         try {
-            await axios.put('http://localhost:8080/peticiones/update-status', {
+            await axios.put(`${API_URL}/peticiones/update-status`, {
                 code: selectedPeticion.id,
                 estado: 'RECHAZADA',
             });

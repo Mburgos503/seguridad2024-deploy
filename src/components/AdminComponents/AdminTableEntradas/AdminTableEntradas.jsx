@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './AdminTableEntradas.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const AdminTableEntradas = () => {
     const [peticiones, setPeticiones] = useState([]);
     const [error, setError] = useState(null);
@@ -9,7 +12,7 @@ const AdminTableEntradas = () => {
     useEffect(() => {
         const fetchPeticiones = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/peticiones/all-peticiones');
+                const response = await axios.get(`${API_URL}/peticiones/all-peticiones`);
                 // Filtrar peticiones donde dui_visitante no es nulo
                 const filteredPeticiones = response.data.filter(peticion => peticion.dui_visitante !== null);
                 setPeticiones(filteredPeticiones);

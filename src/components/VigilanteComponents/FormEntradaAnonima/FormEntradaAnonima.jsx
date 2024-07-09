@@ -5,6 +5,9 @@ import email_icon from '../../../assets/email.png';
 import user_icon from '../../../assets/person.png';
 import dui_icon from '../../../assets/DUI.png';
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const FormEntradaAnonima = () => {
     const [nombre, setNombre] = useState('');
     const [razonEntrada, setRazonEntrada] = useState('');
@@ -35,7 +38,7 @@ const FormEntradaAnonima = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/peticiones/add-peticion', data, {
+            const response = await axios.post(`${API_URL}/peticiones/add-peticion`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

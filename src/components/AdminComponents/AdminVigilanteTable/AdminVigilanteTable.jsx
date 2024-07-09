@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminVigilanteTable.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const AdminVigilanteTable = () => {
     const [role, setRole] = useState('');
     const [users, setUsers] = useState([]);
@@ -16,7 +19,7 @@ const AdminVigilanteTable = () => {
         // Obtener todos los hogares disponibles al montar el componente
         const fetchHogares = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/Hogar/all-hogares');
+                const response = await axios.get(`${API_URL}/Hogar/all-hogares`);
                 setHogares(response.data);
             } catch (error) {
                 console.error('Error fetching hogares:', error);
@@ -30,9 +33,9 @@ const AdminVigilanteTable = () => {
         try {
             let response;
             if (role === 'ALL') {
-                response = await axios.get('http://localhost:8080/user/all-users');
+                response = await axios.get(`${API_URL}/user/all-users`);
             } else {
-                response = await axios.post('http://localhost:8080/user/find-by-role', { role });
+                response = await axios.post(`${API_URL}/user/find-by-role`, { role });
             }
             setUsers(response.data);
         } catch (error) {
@@ -49,7 +52,7 @@ const AdminVigilanteTable = () => {
     const executeAction = async () => {
         if (action === 'changeRole') {
             try {
-                await axios.post('http://localhost:8080/user/update-role', {
+                await axios.post(`${API_URL}/user/update-role`, {
                     correo: selectedUser.correo,
                     newRole: newRole,
                 });
@@ -60,7 +63,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'deleteUser') {
             try {
-                await axios.delete('http://localhost:8080/user/delete-user', {
+                await axios.delete(`${API_URL}/user/delete-user`, {
                     data: { correo: selectedUser.correo },
                 });
                 setMessage('Usuario eliminado exitosamente');
@@ -70,7 +73,7 @@ const AdminVigilanteTable = () => {
             }
         } else if (action === 'addHogar') {
             try {
-                await axios.post('http://localhost:8080/user/add-hogarXuser', {
+                await axios.post(`${API_URL}/user/add-hogarXuser`, {
                     direccion: [hogar],
                     correo: selectedUser.correo,
                 });
