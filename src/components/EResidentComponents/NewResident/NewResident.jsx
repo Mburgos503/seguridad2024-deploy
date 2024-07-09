@@ -48,7 +48,7 @@ const NewResident = () => {
         };
 
         try {
-            const response = await axios.post('/api/peticiones/add-peticion', peticion, {
+            const response = await axios.post('http://localhost:8080/peticiones/add-peticion', peticion, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

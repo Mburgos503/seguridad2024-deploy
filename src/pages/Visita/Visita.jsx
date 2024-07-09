@@ -16,7 +16,7 @@ const Visita = () => {
       }
 
       try {
-        const response = await axios.post('/api/user/find-user', { correo: email });
+        const response = await axios.post('http://localhost:8080/user/find-user', { correo: email });
         setUserData(response.data);
       } catch (error) {
         setError('Error al obtener la información del usuario');

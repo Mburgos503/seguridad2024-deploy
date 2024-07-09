@@ -35,7 +35,7 @@ const FormEntradaAnonima = () => {
         };
 
         try {
-            const response = await axios.post('/api/peticiones/add-peticion', data, {
+            const response = await axios.post('http://localhost:8080/peticiones/add-peticion', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -15,7 +15,7 @@ const SentSolicitudesTable = () => {
             }
 
             try {
-                const response = await axios.post('/api/peticiones/find-peticion-user', { correo }, {
+                const response = await axios.post('http://localhost:8080/peticiones/find-peticion-user', { correo }, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

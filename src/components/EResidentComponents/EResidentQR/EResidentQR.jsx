@@ -45,7 +45,7 @@ const EResidentQR = () => {
         };
 
         try {
-            const response = await axios.post('/api/codigoqr/add-codeqr', data, {
+            const response = await axios.post('http://localhost:8080/codigoqr/add-codeqr', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

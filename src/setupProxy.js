@@ -6,9 +6,9 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: 'http://167.172.244.10:8080',
       changeOrigin: true,
-      secure: false, // para permitir HTTP en lugar de HTTPS
+      secure: false, 
       pathRewrite: {
-        '^/api': '', // elimina el prefijo /api cuando hace la solicitud al backend
+        '^/api': '', 
       },
     })
   );
